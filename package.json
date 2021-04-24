@@ -5,7 +5,7 @@
   "scripts": {
     "bind-crypto": "./node_modules/.bin/rn-nodeify --hack --install",
     "postinstall": "npx jetify",
-    "android": "react-native run-android",
+    "android": "react-native run-android --no-jetifier",
     "ios": "react-native run-ios",
     "start": "react-native start --reset-cache",
     "test": "jest",

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Item, View } from 'native-base'
 import { ViewPropTypes, StyleSheet, TextPropTypes } from 'react-native'
 import PropTypes from 'prop-types'
@@ -26,12 +26,18 @@ function PickerInputSMH(props) {
     setState({ value: itemValue })
   }, [])
 
+  useEffect(() => {
+    if (!!props.style) {
+      delete props.style.color
+    }
+  }, [props.style])
+
   return (
     <View
       style={[
         styles.container,
-        props.regular && styles.regular,
-        props.wrapperStyle
+        props.regular && styles.regular || {},
+        props.wrapperStyle || {}
       ]}
     >
       <Picker
@@ -39,8 +45,8 @@ function PickerInputSMH(props) {
         selectedValue={state.value}
         onValueChange={changeValue}
         mode='dropdown'
-        style={props.style}
-        itemStyle={props.textStyle}
+        style={props.style || {}}
+        itemStyle={props.textStyle || {}}
       >
         {props.data.map((trans, idx) => {
           return (

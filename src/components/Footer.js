@@ -16,13 +16,13 @@ const Footer = (props) => {
   return useObserver(() => {
     const { t } = useTranslation()
     const gotoSmart = useCallback(() => {
-      Actions.smart()
+      // Actions.smart()
     }, [])
     const gotoHome = useCallback(() => {
       Actions.home()
     }, [])
     const gotoProfile = useCallback(() => {
-      Actions.profile()
+      // Actions.profile()
     }, [])
     return (
       <View

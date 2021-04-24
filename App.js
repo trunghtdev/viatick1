@@ -90,6 +90,8 @@ const App = () => {
           console.log({ 'date': moment(Date.now()).format() })
           if (Date.now() >= date.valueOf()) {
             store.auth.login()
+            clearInterval(interval)
+            interval = setInterval(() => reLoginWhenTokenExpire(), 1000)
           }
         } else {
           store.auth.login()

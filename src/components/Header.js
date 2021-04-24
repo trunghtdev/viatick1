@@ -69,9 +69,9 @@ function Header() {
               </TouchableOpacity>
             }
           >
-            {listLanguage.map(lng => {
+            {listLanguage.map((lng) => {
               return (
-                <>
+                <React.Fragment key={lng.key}>
                   <MenuItem
                     onPress={() => handleSelectLng(lng)}
                     key={lng.key}
@@ -79,7 +79,7 @@ function Header() {
                     {t(`app.common.lng.${lng.name}`) + ` (${lng.key.toLocaleUpperCase()}) `}
                   </MenuItem>
                   <MenuDivider />
-                </>
+                </React.Fragment>
               )
             })}
           </Menu>
