@@ -1,0 +1,4 @@
+{
+  "emulator.emulatorPathWindows": "D:\\AppData\\Android\\SDK\\emulator\\emulator.exe",
+  "compile-hero.disable-compile-files-on-did-save-code": true
+}

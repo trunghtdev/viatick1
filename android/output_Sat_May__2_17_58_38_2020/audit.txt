@@ -1,0 +1,23 @@
+Foremost version 1.5.7 by Jesse Kornblum, Kris Kendall, and Nick Mikus
+Audit File
+
+Foremost started at Sat May  2 17:58:38 2020
+Invocation: foremost -v -T -c /etc/foremost.conf -i /dev/sda -o output 
+Output directory: /home/trunght/Desktop/js/emn/mobile/android/output_Sat_May__2_17_58_38_2020
+Configuration file: /etc/foremost.conf
+------------------------------------------------------------------
+File: /dev/sda
+Start: Sat May  2 17:58:38 2020
+Length: 931 GB (1000204886016 bytes)
+ 
+Num	 Name (bs=512)	       Size	 File Offset	 Comment 
+
+0:	00010616.zip 	     338 KB 	    5435392 	 
+1:	00011296.zip 	     415 KB 	    5783552 	 
+2:	00695240.exe 	      60 KB 	  355962880 	 01/12/2017 01:23:08
+3:	00695504.dll 	      45 KB 	  356098048 	 06/18/2012 07:37:05
+4:	00695600.exe 	       6 KB 	  356147200 	 06/28/2012 11:36:41
+5:	00695880.exe 	      78 KB 	  356290560 	 08/18/2017 04:17:00
+6:	00696216.dll 	      45 KB 	  356462592 	 06/18/2012 07:37:05
+7:	00696312.exe 	       6 KB 	  356511744 	 06/28/2012 11:36:41
+Interrupt received at Sat May  2 17:58:52 2020
