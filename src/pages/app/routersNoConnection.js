@@ -4,7 +4,7 @@ import { StatusBar } from 'react-native'
 import { routersNoConnection } from '../../configs'
 import { Router, Scene } from 'react-native-router-flux'
 import { styles } from './index'
-import Header from '../../components2/Header'
+import Header from '../../components/Header'
 
 StatusBar.setHidden(true)
 

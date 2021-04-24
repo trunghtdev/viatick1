@@ -10,7 +10,7 @@ import FooterSunIcon from '../assets2/icons/footer-sun.svg'
 import FooterUserIcon from '../assets2/icons/footer-user.svg'
 
 import { normalize } from '../../native-base-theme/variables/normalize'
-import Button from '../components2/Button'
+import Button from '../components/Button'
 
 const Footer = (props) => {
   return useObserver(() => {

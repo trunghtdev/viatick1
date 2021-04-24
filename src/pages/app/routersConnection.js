@@ -1,14 +1,13 @@
 import React, { memo, useContext, useEffect } from 'react'
 import { StatusBar } from 'react-native'
-import { MenuContext } from '../../components'
 import { routersConnection } from '../../configs'
 import { __appConstant } from '../../constants'
 import { Router, Scene } from 'react-native-router-flux'
 import { styles } from './index'
 import { MobXProviderContext, useObserver } from 'mobx-react'
 
-import Header from '../../components2/Header'
-import Footer from '../../components2/Footer'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 
 StatusBar.setHidden(true)
 const RoutersConnetcion = memo(() => {

@@ -8,16 +8,20 @@ import React, {
 import SplashScreen from 'react-native-splash-screen'
 import { MobXProviderContext, useObserver } from 'mobx-react'
 import { ApolloProvider } from '@apollo/react-hooks'
-import { clientConnection } from '@tools'
+import { clientConnection } from '../../tools'
 import { StyleSheet } from 'react-native'
 import { __appConstant } from '../../constants'
 import RoutersNoConnection from './routersNoConnection'
 import RoutersConnection from './routersConnection'
-import Notification from '../../components2/Notification'
+import Notification from '../../components/Notification'
 
 /**
  * @desc context app
  */
+
+const AppContext = React.createContext({
+  notify: null
+})
 
 const AppContent = memo(() => {
   return useObserver(() => {
@@ -49,12 +53,14 @@ const AppContent = memo(() => {
       <ApolloProvider
         client={clientConnection(store.connection.server + '/graphq')}
       >
-        <>
-          <Notification
-            ref={refNoti}
-          />
-          <RoutersConnection />
-        </>
+        <AppContext.Provider value={{ notify }}>
+          <>
+            <Notification
+              ref={refNoti}
+            />
+            <RoutersConnection />
+          </>
+        </AppContext.Provider>
       </ApolloProvider>
     )
   })

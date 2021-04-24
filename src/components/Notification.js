@@ -8,7 +8,6 @@ import ErrorIcon from '../assets2/icons/error.svg'
 import WarningIcon from '../assets2/icons/warning.svg'
 import { normalize } from '../../native-base-theme/variables/normalize'
 import useDimensions from 'react-native-use-dimensions'
-import PropTypes from 'prop-types'
 
 Notification.propTypes = {
 }

@@ -1,5 +1,5 @@
 import { action, observable } from 'mobx'
-import { localStoragePropertiesName } from '../../constants/localStoragePropertiesName'
+import { localStoragePropertiesName } from '../../constants'
 import AsyncStorage from '@react-native-community/async-storage'
 
 class Auth {
@@ -42,7 +42,6 @@ class Auth {
           scope: "7c62db1cfb47550927b11191b7995f6cd482b7481fd0d98f1d8b403937b909f9"
         }
       }).then(data => data.json())
-      console.log({ dataToken })
       // token
       this.token = dataToken?.access_token
       this.isAuthenticated = !!dataToken?.access_token
@@ -53,9 +52,9 @@ class Auth {
       this.expireAt = +today
 
       // save to localstoage
-      localStorage.setItem(localStoragePropertiesName.Authorization, dataToken?.access_token)
-      localStorage.setItem(localStoragePropertiesName.expireAt, +today)
-      localStorage.setItem(localStoragePropertiesName.tokenType, dataToken?.token_type || '')
+      await AsyncStorage.setItem(localStoragePropertiesName.Authorization, dataToken?.access_token)
+      await AsyncStorage.setItem(localStoragePropertiesName.expireAt, +today)
+      await AsyncStorage.setItem(localStoragePropertiesName.tokenType, dataToken?.token_type || '')
     } catch (err) {
       console.log({ err })
     }
