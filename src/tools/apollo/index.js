@@ -11,7 +11,7 @@ import { getMainDefinition } from 'apollo-utilities'
 // import crypto from 'crypto'
 import { createPersistedQueryLink } from 'apollo-link-persisted-queries'
 // import { RetryLink } from 'apollo-link-retry'
-import { __appConstant } from '../../constants'
+import { localStoragePropertiesName, headersPropertiesName } from '../../constants'
 
 import { errorMiddleware } from './middleware'
 /* eslint-disable max-len */
@@ -28,7 +28,8 @@ function connection(uri, cache) {
     {
       connectionParams: async () => {
         return {
-          'access-token': await AsyncStorage.getItem(__appConstant.TOKEN) || ' ',
+          [headersPropertiesName.authorization]: await AsyncStorage.getItem(localStoragePropertiesName.authorization) || ' ',
+          [headersPropertiesName.xApiKey]: 'da2-zlk3xmy44fg4jpj73vlwlfi7sq',
           'content-type': 'application/json'
         }
       },
@@ -44,7 +45,8 @@ function connection(uri, cache) {
       forceFetch: true,
       headers: {
         ...headers,
-        'access-token': await AsyncStorage.getItem(__appConstant.TOKEN) || ' ',
+        [headersPropertiesName.authorization]: await AsyncStorage.getItem(localStoragePropertiesName.authorization) || ' ',
+        [headersPropertiesName.xApiKey]: 'da2-zlk3xmy44fg4jpj73vlwlfi7sq',
         'content-type': 'application/json'
       }
     }
@@ -57,35 +59,8 @@ function connection(uri, cache) {
     }, wsLink, httpLink
   )
 
-  // This is the same cache you pass into new ApolloClient
-
-  const stateLink = withClientState({
-    cache,
-    resolvers: {
-      Mutation: {
-        updateNetworkStatus: (_, { isConnected }, { cache }) => {
-          const data = {
-            networkStatus: {
-              __typename: 'NetworkStatus',
-              isConnected
-            },
-          };
-          cache.writeData({ data });
-          return null;
-        },
-      },
-    },
-    defaults: {
-      networkStatus: {
-        __typename: 'NetworkStatus',
-        isConnected: true,
-      },
-    },
-  });
-
   const link = ApolloLink.from([
     errorMiddleware,
-    stateLink,
     linkSplit
   ])
 

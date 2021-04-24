@@ -52,8 +52,8 @@ class Auth {
       this.expireAt = +today
 
       // save to localstoage
-      await AsyncStorage.setItem(localStoragePropertiesName.Authorization, dataToken?.access_token)
-      await AsyncStorage.setItem(localStoragePropertiesName.expireAt, +today)
+      await AsyncStorage.setItem(localStoragePropertiesName.authorization, dataToken?.access_token)
+      await AsyncStorage.setItem(localStoragePropertiesName.expireAt, `${+today}`)
       await AsyncStorage.setItem(localStoragePropertiesName.tokenType, dataToken?.token_type || '')
     } catch (err) {
       console.log({ err })

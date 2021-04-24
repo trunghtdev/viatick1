@@ -1,1 +1,17 @@
-{}
+{
+  "app": {
+    "common": {
+      "lng": {
+        "english": "Tiếng anh",
+        "vietnamese": "Tiếng việt"
+      }
+    },
+    "pages": {
+      "home": {
+        "name": "Trang chủ",
+        "smart": "Thông minh",
+        "profile": "Hồ sơ"
+      }
+    }
+  }
+}

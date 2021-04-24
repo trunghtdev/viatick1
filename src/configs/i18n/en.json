@@ -1,1 +1,17 @@
-{}
+{
+  "app": {
+    "common": {
+      "lng": {
+        "english": "English",
+        "vietnamese": "Vietnamese"
+      }
+    },
+    "pages": {
+      "home": {
+        "name": "Home",
+        "smart": "Smart",
+        "profile": "Profile"
+      }
+    }
+  }
+}

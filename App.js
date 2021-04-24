@@ -12,6 +12,7 @@ import { Provider as MobxProvider } from 'mobx-react'
 import AsyncStorage from '@react-native-community/async-storage'
 import Geolocation from '@react-native-community/geolocation';
 import { StyleProvider } from 'native-base'
+import moment from 'moment'
 
 import { __appConstant } from './src/constants'
 import AppContent from './src/pages/app'
@@ -59,7 +60,7 @@ const App = () => {
 
   const getAndStoreGlobalConfig = async () => {
     try {
-      const server = await AsyncStorage.getItem(localStoragePropertiesName.server)
+      const server = await AsyncStorage.getItem(localStoragePropertiesName.server) || 'https://aitjmbzhsbagnbysj2jrinbrsq.appsync-api.ap-northeast-1.amazonaws.com'
 
       const expireAt = await AsyncStorage.getItem(localStoragePropertiesName.expireAt)
       const tokenType = await AsyncStorage.getItem(localStoragePropertiesName.tokenType)
@@ -71,7 +72,6 @@ const App = () => {
       tStore.setAuth(auth)
       tStore.setConnection(connection)
       setStore(tStore)
-      console.log({ tStore })
     } catch (err) {
       console.log({ err })
     }
@@ -80,6 +80,29 @@ const App = () => {
   useEffect(() => {
     getAndStoreGlobalConfig()
   }, [])
+
+  useEffect(() => {
+    if (!!store) {
+      const reLoginWhenTokenExpire = async () => {
+        const expireAtSavedLocal = await AsyncStorage.getItem(localStoragePropertiesName.expireAt)
+        if (!!expireAtSavedLocal) {
+          const date = moment(parseFloat(expireAtSavedLocal))
+          console.log({ 'date': moment(Date.now()).format() })
+          if (Date.now() >= date.valueOf()) {
+            store.auth.login()
+          }
+        } else {
+          store.auth.login()
+        }
+      }
+      const interval = setInterval(() => reLoginWhenTokenExpire(), 1000)
+      return () => {
+        if (interval) {
+          clearInterval(interval)
+        }
+      }
+    }
+  }, [store])
 
   return (
     store && <Suspense fallback={null}>
