@@ -55,6 +55,40 @@
       }
     },
     "pages": {
+      "profile": {
+        "album": "Album",
+        "firstname": {
+          "name": "Tên"
+        },
+        "lastname": {
+          "name": "Họ và tên đệm"
+        },
+        "nickname": {
+          "name": "Bí danh"
+        },
+        "email": {
+          "name": "Thư điện tử"
+        },
+        "phonenumber": {
+          "name": "Số điện thoại"
+        },
+        "birthday": {
+          "name": "Ngày sinh"
+        },
+        "pass": {
+          "name": "Mật khẩu hiện tại",
+          "change": "Đổi mật khẩu"
+        },
+        "permission": {
+          "share": "Chia sẽ quyền"
+        },
+        "newPass": {
+          "name": "Mật khẩu mới"
+        },
+        "repeatNewPassword": {
+          "name": "Nhập lại mật khẩu mới"
+        }
+      },
       "home": {
         "name": "Trang chủ",
         "smart": "Thông minh",

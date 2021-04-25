@@ -6,6 +6,8 @@ import Login from '../../pages/authentication/login'
 import SignUp from '../../pages/authentication/signUp'
 // User
 import Profile from '../../pages/profile'
+// End Device
+import SensorTemp from '../../pages/endDevice/sensorTemp'
 
 export const routersNoConnection = [
 
@@ -51,6 +53,14 @@ export const routersConnection = [
     path: '/profile',
     key: 'profile',
     Component: Profile
+  },
+  {
+    hideTabBar: true,
+    hideNavBar: true,
+    initial: false,
+    path: '/sensorTemp',
+    key: 'sensorTemp',
+    Component: SensorTemp
   }
   // {
   //   hideTabBar: false,

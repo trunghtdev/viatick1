@@ -1,17 +1,27 @@
-import React, { forwardRef, memo } from 'react'
-import { useObserver } from 'mobx-react'
+import React, { forwardRef, useCallback, useContext, useState } from 'react'
+import { MobXProviderContext, useObserver } from 'mobx-react'
 import { View, Text } from 'native-base'
-import { StyleSheet } from 'react-native'
-
+import { StyleSheet, TouchableOpacity } from 'react-native'
+import debounce from 'lodash.debounce'
+import Orientation from 'react-native-orientation-locker'
 
 import CameraIcon from '../../../assets2/icons/device-camera.svg'
 import OnOffIcon from '../../../assets2/icons/on-off.svg'
 import Picker from '../../../components/PickerInput'
+import { Actions } from 'react-native-router-flux'
 
-function DeviceItem({ wrapperStyle }, ref) {
+function DeviceItem({ wrapperStyle, device }, ref) {
   return useObserver(() => {
+    const [tDevice, setTDevice] = useState(device)
+    const { store } = useContext(MobXProviderContext)
+    const onPress = useCallback(() => {
+      Orientation.lockToLandscape()
+      store?.global?.setDevice(tDevice)
+      Actions.sensorTemp()
+    }, [tDevice])
     return (
-      <View
+      <TouchableOpacity
+        onPress={debounce(onPress, 100, { leading: true, trailing: false })}
         style={[styles.container, wrapperStyle]}
       >
         <View
@@ -35,7 +45,7 @@ function DeviceItem({ wrapperStyle }, ref) {
           <View
             style={[styles.midTop, styles.flexStyle]}
           >
-            <Text style={[styles.nameDevice]}>Camera 1</Text>
+            <Text style={[styles.nameDevice]}>{tDevice?.name}</Text>
           </View>
           <View
             style={[styles.midTop, styles.flexStyle]}
@@ -57,7 +67,7 @@ function DeviceItem({ wrapperStyle }, ref) {
         >
           <Text style={[styles.txtDate]}>Last updated : 12 : 12 am</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   })
 }

@@ -36,7 +36,7 @@ function ButtonSMH(props) {
         transparent={!!props.transparent}
         disabled={props.disabled}
         style={[styles.btn, props.style]}
-        onPress={debounce(onPress, 300, { leading: true, trailing: false })}
+        onPress={debounce(onPress, 100, { leading: true, trailing: false })}
       >
         {props.left}
         {props.text && (

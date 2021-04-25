@@ -81,6 +81,8 @@ class Auth {
     this.tokenViaTickBMS = null
     this.expireTokenViaTickBMSAt = null
     this.tokenTypeViaTickBMS = null
+
+    await AsyncStorage.clear()
   }
 }
 

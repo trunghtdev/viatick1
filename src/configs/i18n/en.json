@@ -61,7 +61,40 @@
         "smart": "Smart",
         "profile": "Profile"
       },
-
+      "profile": {
+        "album": "Album",
+        "firstname": {
+          "name": "First name"
+        },
+        "lastname": {
+          "name": "Last name"
+        },
+        "nickname": {
+          "name": "Nick name"
+        },
+        "email": {
+          "name": "Email"
+        },
+        "phonenumber": {
+          "name": "Phone number"
+        },
+        "birthday": {
+          "name": "Birthday"
+        },
+        "pass": {
+          "name": "Current password",
+          "change": "Change password"
+        },
+        "permission": {
+          "share": "Share permission"
+        },
+        "newPass": {
+          "name": "New password"
+        },
+        "repeatNewPassword": {
+          "name": "Re-peat new password"
+        }
+      },
       "auth": {
         "signin": "Sign In",
         "signup": "Sign Up",

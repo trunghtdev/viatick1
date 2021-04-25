@@ -8,6 +8,7 @@ import ErrorIcon from '../assets2/icons/error.svg'
 import WarningIcon from '../assets2/icons/warning.svg'
 import { normalize } from '../../native-base-theme/variables/normalize'
 import useDimensions from 'react-native-use-dimensions'
+import PropTypes from 'prop-types'
 
 Notification.propTypes = {
 }
@@ -37,15 +38,28 @@ function Notification(props, ref) {
               duration: 400,
               delay: 1500,
               useNativeDriver: false
-            }).start()
+            }).start(({ finished }) => {
+              if (finished) {
+                setNotification({
+                  title: "",
+                  message: ""
+                })
+              }
+            })
           }
         })
       },
       setState: async (noti) => {
         await setNotification(noti)
       }
-    }), [ani])
-
+    }), [ani, notification])
+    if (
+      !notification.success &&
+      !notification.warning &&
+      !notification.error
+    ) {
+      return null
+    }
     return (
       <View
         style={[
@@ -91,10 +105,10 @@ function Notification(props, ref) {
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute",
+    position: 'absolute',
     bottom: "50%",
     zIndex: 100000,
-    width: "100%",
+    width: "100%"
   },
   wrapper: {
     flexDirection: 'row',
@@ -106,6 +120,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   },
   success: {
+    zIndex: 100000,
     borderColor: "#1B9359"
   },
   error: {

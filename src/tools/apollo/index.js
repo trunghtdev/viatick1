@@ -77,7 +77,7 @@ const clientConnection = (localUri = null, cloudUri = null) => {
   }))
 
   const { link: cloudLink } = connection(cloudUri, async () => ({
-    [headersPropertiesName.authorizationViatickBMS]: await AsyncStorage.getItem(localStoragePropertiesName.authorizationViatickBMS) || ' ',
+    [headersPropertiesName.authorizationViatickBMS]: 'Bearer ' + (await AsyncStorage.getItem(localStoragePropertiesName.authorizationViatickBMS) || ' '),
     [headersPropertiesName.xApiKey]: "da2-zlk3xmy44fg4jpj73vlwlfi7sq",
   }))
 

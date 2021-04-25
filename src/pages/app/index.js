@@ -49,17 +49,16 @@ const AppContent = memo(() => {
         </AppContext.Provider>
       )
     }
-    console.log({ 'store.connection.server': store.connection.server })
     return (
       <ApolloProvider
         client={clientConnection(store.connection.server + '/graphqlenv', 'https://aitjmbzhsbagnbysj2jrinbrsq.appsync-api.ap-northeast-1.amazonaws.com/graphql')}
       >
         <AppContext.Provider value={{ notify }}>
           <>
+            <RoutersConnection />
             <Notification
               ref={refNoti}
             />
-            <RoutersConnection />
           </>
         </AppContext.Provider>
       </ApolloProvider>

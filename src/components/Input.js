@@ -50,7 +50,7 @@ InputSMH.defaultProps = {
 
 InputSMH.displayName = 'InputSMH'
 
-function InputSMH({ regular, icon, secureTextEntry, disabled, onChangeText, wrapperStyle, placeholder, label, bottom, autoCompleteType, validator, keyboardType, style }, ref) {
+function InputSMH({ defaultValue, regular, icon, secureTextEntry, disabled, onChangeText, wrapperStyle, placeholder, label, bottom, autoCompleteType, validator, keyboardType, style }, ref) {
   const [state, setState] = useState({
     value: "",
     error: false
@@ -73,7 +73,7 @@ function InputSMH({ regular, icon, secureTextEntry, disabled, onChangeText, wrap
     error: state.error,
     setState: setState
   }), [state])
-
+  console.log({ defaultValue })
   return (
     <View style={[styles.wrapper, wrapperStyle]}>
       <Item
@@ -86,6 +86,7 @@ function InputSMH({ regular, icon, secureTextEntry, disabled, onChangeText, wrap
         {!!label && (<Label style={[styles.label]}>{label}</Label>)}
         {!!icon && (icon)}
         <Input
+          defaultValue={defaultValue}
           disabled={!!disabled}
           onChangeText={onChangeTextCustom}
           placeholder={placeholder}
