@@ -30,6 +30,30 @@ const RoutersConnetcion = memo(() => {
           */}
           {routersConnection
             .map(route => {
+              let initial = false
+              switch (route.key) {
+                case 'auth':
+                  console.log({ 'store.auth.isAuthenticated': store.auth.isAuthenticated })
+                  if (!store.auth.isAuthenticated) {
+                    initial = true
+                  }
+                  break;
+                case 'home':
+                  console.log({ 'store.auth.isAuthenticated': store.auth.isAuthenticated })
+                  if (store.auth.isAuthenticated) {
+                    initial = true
+                  }
+                  break;
+
+                default:
+                  break;
+              }
+              return {
+                ...route,
+                initial
+              }
+            })
+            .map(route => {
               return (
                 <Scene
                   hideBackImage

@@ -60,14 +60,15 @@ const App = () => {
 
   const getAndStoreGlobalConfig = async () => {
     try {
-      const server = await AsyncStorage.getItem(localStoragePropertiesName.server) || 'https://aitjmbzhsbagnbysj2jrinbrsq.appsync-api.ap-northeast-1.amazonaws.com'
+      const server = await AsyncStorage.getItem(localStoragePropertiesName.server) || 'http://172.168.1.79:19021'
 
-      const expireAt = await AsyncStorage.getItem(localStoragePropertiesName.expireAt)
-      const tokenType = await AsyncStorage.getItem(localStoragePropertiesName.tokenType)
+      const expireTokenViaTickBMSAt = await AsyncStorage.getItem(localStoragePropertiesName.expireTokenViaTickBMSAt)
+      const tokenTypeViaTickBMS = await AsyncStorage.getItem(localStoragePropertiesName.tokenTypeViaTickBMS)
+      const authorizationViatickBMS = await AsyncStorage.getItem(localStoragePropertiesName.authorizationViatickBMS)
       const authorization = await AsyncStorage.getItem(localStoragePropertiesName.authorization)
 
       const tStore = new Store()
-      const auth = new Auth(tStore, authorization, expireAt, tokenType)
+      const auth = new Auth(tStore, authorization, authorizationViatickBMS, tokenTypeViaTickBMS, expireTokenViaTickBMSAt)
       const connection = new Connection(tStore, server)
       tStore.setAuth(auth)
       tStore.setConnection(connection)
@@ -84,12 +85,12 @@ const App = () => {
   useEffect(() => {
     if (!!store) {
       const reLoginWhenTokenExpire = async () => {
-        const expireAtSavedLocal = await AsyncStorage.getItem(localStoragePropertiesName.expireAt)
+        const expireAtSavedLocal = await AsyncStorage.getItem(localStoragePropertiesName.expireTokenViaTickBMSAt)
         if (!!expireAtSavedLocal) {
           const date = moment(parseFloat(expireAtSavedLocal))
           console.log({ 'date': moment(Date.now()).format() })
           if (Date.now() >= date.valueOf()) {
-            store.auth.login()
+            store.auth.loginViaTickBMS()
             clearInterval(interval)
             interval = setInterval(() => reLoginWhenTokenExpire(), 1000)
           }

@@ -19,7 +19,7 @@ import Notification from '../../components/Notification'
  * @desc context app
  */
 
-const AppContext = React.createContext({
+export const AppContext = React.createContext({
   notify: null
 })
 
@@ -49,9 +49,10 @@ const AppContent = memo(() => {
         </AppContext.Provider>
       )
     }
+    console.log({ 'store.connection.server': store.connection.server })
     return (
       <ApolloProvider
-        client={clientConnection(store.connection.server + '/graphq')}
+        client={clientConnection(store.connection.server + '/graphqlenv', 'https://aitjmbzhsbagnbysj2jrinbrsq.appsync-api.ap-northeast-1.amazonaws.com/graphql')}
       >
         <AppContext.Provider value={{ notify }}>
           <>

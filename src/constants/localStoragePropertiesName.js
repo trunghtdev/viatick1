@@ -1,11 +1,7 @@
 export const localStoragePropertiesName = {
   authorization: 'Authorization',
-  expireAt: 'expireAt',
-  tokenType: 'token_type',
+  authorizationViatickBMS: 'AuthorizationViatickBMS',
+  expireTokenViaTickBMSAt: 'expireTokenViaTickBMSAt',
+  tokenTypeViaTickBMS: 'tokenTypeViaTickBMS',
   server: 'server'
-}
-
-export const headersPropertiesName = {
-  authorization: 'Authorization',
-  xApiKey: 'X-Api-Key'
 }

@@ -1,6 +1,55 @@
 {
   "app": {
     "common": {
+        "connecting": "Conneting",
+        "try_again": "Try again",
+        "signout": "Sign out",
+        "connect": "Connect",
+        "next": "Next",
+        "done": "Done",
+        "isInvalid": "is invalid.",
+        "isSuccessed": "is sucessed.",
+        "confirm": "Confirm",
+        "cancle": "Cancle",
+        "textInvalid": "can not contain specail characters.",
+        "resgist": "Regist",
+        "background": "Background",
+        "name": "Name",
+        "continue": "Continue",
+        "create": "Create",
+        "remove": "Remove",
+        "change": "Change",
+        "save": "Save",
+        "add": "Add",
+        "back": "Back",
+        "share": "Share",
+        "cancel": "Cancel",
+        "success": "Success",
+        "agreeTo": "Agree to",
+        "new": "New",
+        "email": {
+          "name": "Email",
+          "invalid": "Email is invalid"
+        },
+        "password": {
+          "invalid": "Password is invalid"
+        },
+        "phonenumber": {
+          "name": "Phone number",
+          "invalid": "Phone number is invalid"
+        },
+        "username": {
+          "invalid": "Username is invalid"
+        },
+        "menu": {
+          "logout": "Logout"
+        },
+        "error": {
+          "name": "Error",
+          "invalid": "invalid",
+          "existed": "existed",
+          "permission": "Permission Deny"
+        },
       "lng": {
         "english": "English",
         "vietnamese": "Vietnamese"
@@ -11,6 +60,78 @@
         "name": "Home",
         "smart": "Smart",
         "profile": "Profile"
+      },
+
+      "auth": {
+        "signin": "Sign In",
+        "signup": "Sign Up",
+        "selectServer": "Select other server",
+        "withFacebook": "Continue with Facebook",
+        "emailOrPhone": "I’ll use email or phone",
+        "haveAccount": "Already have a account ?",
+        "login": "Login"
+      },
+      "login": {
+        "failure": "Login failure",
+        "success": "Congratulation! Login successfully.",
+        "userIsNotVerified": "User is not verified.",
+        "userIsBlocked": "User is blocked.",
+        "remember": "Remember password",
+        "name": "Login",
+        "errors": {
+          "isBlocked": "Account was blocked."
+        },
+        "username": {
+          "name": "Username",
+          "placeholder": "Type username",
+          "empty": "Please input your username.",
+          "notFound": "Account is not existed. Check your username."
+        },
+        "pass": {
+          "name": "Password",
+          "placeholder": "Type password",
+          "empty": "Please input your password",
+          "incorrect": "Password is incorrect."
+        },
+        "forgotPass": "Forgot password ?",
+        "userNotFound": "User is not found.",
+        "passwordIncorrect": "Password is incorrect."
+      },
+      "signup": {
+        "regist": {
+          "title": "Registed",
+          "message": "Congratulation! Regist successfully."
+        },
+        "emailOrPhone": {
+          "placeholder": "Email or phone",
+          "invalidPhone": "Phone number is invalid",
+          "invalidEmail": "Email is invalid"
+        },
+        "pass": {
+          "placeholder": "Password",
+          "invalid": "Password is invalid",
+          "desc": "Your password must be more than 8 characters long, should contain at-least one Uppercase, one Lowercase, one Numeric and one Special character."
+        },
+        "repeatPass": {
+          "placeholder": "Repeat password",
+          "invalid": "Repeat password is invalid",
+          "notMatch": "Password and repeat password are not match"
+        },
+        "countryOrRegion": {
+          "placeholder": "Country/Region",
+          "invalid": "Country/Region is invalid"
+        },
+        "termAndLegal": "Term of Use, Legal Statement",
+        "firstname": "Firstname",
+        "lastname": "Lastname",
+        "username": "Username",
+        "email": "Email",
+        "phonenumber": "Phonen umber",
+        "password": "Password",
+        "repeatpassword": "Repeat password",
+        "usernameUsed": "Username / email is already used.",
+        "descPassword": "Your password must be more than 8 characters long, should contain at-least one Uppercase, one Lowercase, one Numeric and one Special character.",
+        "passwordNotMatch": "Password dose not match."
       }
     }
   }

@@ -6,18 +6,25 @@ class Auth {
   constructor(
     Store,
     token,
-    expireAt,
-    tokenType
+    tokenViaTickBMS,
+    expireTokenViaTickBMSAt,
+    tokenTypeViaTickBMS
   ) {
-    this.token = token
-    this.expireAt = expireAt
-    this.tokenType = tokenType
-    this.isAuthenticated = !!token
     this.Store = Store
+    // my server
+    this.token = token
+    this.isAuthenticated = !!token
+    // viatick BMS
+    this.tokenViaTickBMS = tokenViaTickBMS
+    this.expireTokenViaTickBMSAt = expireTokenViaTickBMSAt
+    this.tokenTypeViaTickBMS = tokenTypeViaTickBMS
   }
 
   @observable
   Store = undefined
+
+  @observable
+  tokenViaTickBMS = undefined
 
   @observable
   token = undefined
@@ -26,13 +33,13 @@ class Auth {
   isAuthenticated = undefined
 
   @observable
-  expireAt = undefined
+  expireTokenViaTickBMSAt = undefined
 
   @observable
-  tokenType = undefined
+  tokenTypeViaTickBMS = undefined
 
   @action.bound
-  login = async () => {
+  loginViaTickBMS = async () => {
     try {
       console.log("login called")
       const dataToken = await fetch('https://bms-api.viatick.com/main/api/oauth2/token', {
@@ -43,28 +50,38 @@ class Auth {
         }
       }).then(data => data.json())
       // token
-      this.token = dataToken?.access_token
-      this.isAuthenticated = !!dataToken?.access_token
-      this.tokenType = dataToken?.token_type
+      this.tokenViaTickBMS = dataToken?.access_token
+      this.tokenTypeViaTickBMS = dataToken?.token_type
       // expireAt
       const today = new Date()
       today.setHours(today.getHours() + (dataToken?.expires_in / 3600))
-      this.expireAt = +today
+      this.expireTokenViaTickBMSAt = +today
 
       // save to localstoage
-      await AsyncStorage.setItem(localStoragePropertiesName.authorization, dataToken?.access_token)
-      await AsyncStorage.setItem(localStoragePropertiesName.expireAt, `${+today}`)
-      await AsyncStorage.setItem(localStoragePropertiesName.tokenType, dataToken?.token_type || '')
+      await AsyncStorage.setItem(localStoragePropertiesName.authorizationViatickBMS, dataToken?.access_token)
+      await AsyncStorage.setItem(localStoragePropertiesName.expireTokenViaTickBMSAt, `${+today}`)
+      await AsyncStorage.setItem(localStoragePropertiesName.tokenTypeViaTickBMS, dataToken?.token_type || '')
     } catch (err) {
       console.log({ err })
     }
   }
 
   @action.bound
+  login = async (token) => {
+    await AsyncStorage.setItem(localStoragePropertiesName.authorization, token)
+    this.token = token
+    console.log({ token })
+    this.isAuthenticated = !!token
+  }
+
+  @action.bound
   logout = async () => {
-    this.isAuthenticated = false
     this.token = null
-    this.expireAt = 0
+    this.isAuthenticated = false
+    // viatick BMS
+    this.tokenViaTickBMS = null
+    this.expireTokenViaTickBMSAt = null
+    this.tokenTypeViaTickBMS = null
   }
 }
 

@@ -1,9 +1,57 @@
 {
   "app": {
     "common": {
+      "connecting": "Đang kết nối",
+      "try_again": "Thử lại",
+      "connect": "Kết nối",
+      "next": "Tiếp",
+      "done": "Hoàn tất",
+      "isInvalid": "không hợp lệ.",
+      "confirm": "Xác nhận",
+      "cancle": "Hủy",
+      "textInvalid": "không thể chứa các kí tự đặc biệt.",
+      "resgist": "Đăng kí",
+      "background": "Hình nền",
+      "signout": "Đăng xuất",
+      "continue": "Tiếp tục",
+      "name": "Tên",
+      "create": "Tạo",
+      "add": "Thêm",
+      "remove": "Xóa",
+      "change": "Thay đổi",
+      "save": "Lưu",
+      "back": "Quay lại",
+      "share": "Chia sẻ",
+      "cancel": "Hủy",
+      "success": "Thành công",
+      "agreeTo": "Đồng ý với",
+      "new": "Mới",
+      "email": {
+        "invalid": "Thư điện tử không hợp lệ",
+        "name": "Thư điện tử"
+      },
+      "password": {
+        "invalid": "Mật khẩu không hợp lệ"
+      },
+      "phonenumber": {
+        "invalid": "Số điện thoại không hợp lệ",
+        "name": "Số điện thoại"
+      },
+      "username": {
+        "invalid": "Tên đăng nhập không hợp lệ"
+      },
+      "menu": {
+        "logout": "Đăng xuất"
+      },
+      "error": {
+        "name": "Lỗi",
+        "invalid": "không hợp lệ",
+        "existed": "đã tồn tại",
+        "permission": "Từ chối quyền"
+      },
       "lng": {
-        "english": "Tiếng anh",
-        "vietnamese": "Tiếng việt"
+        "english": "Tiếng Anh",
+        "vietnamese": "Tiếng Việt"
       }
     },
     "pages": {
@@ -11,6 +59,74 @@
         "name": "Trang chủ",
         "smart": "Thông minh",
         "profile": "Hồ sơ"
+      },
+      "auth": {
+        "signin": "Đăng nhập",
+        "signup": "Đăng kí",
+        "selectServer": "Chọn máy chủ khác",
+        "withFacebook": "Tiếp tục với Facebook",
+        "emailOrPhone": "Tôi muốn sử dụng email hoặc số điện thoại",
+        "haveAccount": "Đã có tài khoản?",
+        "login": "Đăng nhập"
+      },
+      "login": {
+        "failure": "Đăng nhập thất bại",
+        "userIsNotVerified": "Tài khoản chưa được xác thực.",
+        "userIsBlocked": "Tài khoản đã bị khóa.",
+        "userNotFound": "Không tìm thấy tài khoản.",
+        "passwordIncorrect": "Mật khẩu không đúng.",
+        "remember": "Ghi nhớ mật khẩu",
+        "name": "Đăng nhập",
+        "success": "Chúc mừng! Đăng nhập thành công.",
+        "username": {
+          "name": "Tài khoản",
+          "placeholder": "Nhập tài khoản",
+          "empty": "Vui nhập tên tài khoản.",
+          "notFound": "Tài khoản không tồn tại. Kiểm tra tên đăng nhập."
+        },
+        "pass": {
+          "name": "Mật khẩu",
+          "placeholder": "Nhập mật khẩu",
+          "empty": "Vui nhập mật khẩu.",
+          "incorrect": "Mật khẩu không đúng."
+        },
+        "forgotPass": "Quên mật khẩu ?"
+      },
+      "signup": {
+        "regist": {
+          "title": "Đã đăng kí",
+          "message": "Chúc mừng! Đăn kí thành công."
+        },
+        "emailOrPhone": {
+          "placeholder": "Email hoặc số điện thoại",
+          "invalidPhone": "Số điện thoại khồn hợp lệ",
+          "invalidEmail": "Thư điện tử không hợp lệ"
+        },
+        "pass": {
+          "placeholder": "Mật khẩu",
+          "invalid": "Mật khẩu không hợp lệ",
+          "desc": "Mật khẩu của bạn có ít nhất 8 kí tự, có ít nhất một chữ hoa, một chữ thường, một chữ số và một kí tự đặc biệt."
+        },
+        "repeatPass": {
+          "placeholder": "Nhập lại mật khẩu",
+          "invalid": "Mật khẩu nhập lại không hợp lệ",
+          "notMatch": "Mật khẩu không trùng khớp"
+        },
+        "countryOrRegion": {
+          "placeholder": "Quốc gia/Vùng miền",
+          "invalid": "Quốc gia/Vùng miền không hợp lệ"
+        },
+        "termAndLegal": "Đồng ý với Thời hạn sử dụng, Tuyên bố pháp lý",
+        "firstname": "Họ và tên đệm",
+        "lastname": "Tên",
+        "username": "Tên đăng nhập",
+        "email": "Email",
+        "phonenumber": "Số điện thoại",
+        "password": "Mật khẩu",
+        "repeatpassword": "Nhập lại mật khẩu",
+        "usernameExisted": "Tên đăng nhập / email đã được sử dụng.",
+        "descPassword": "Mật khẩu của bạn có ít nhất 8 kí tự, có ít nhất một chữ hoa, một chữ thường, một chữ số và một kí tự đặc biệt.",
+        "passwordNotMatch": "Mật khẩu không trùng khớp."
       }
     }
   }

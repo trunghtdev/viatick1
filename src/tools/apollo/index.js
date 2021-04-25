@@ -16,7 +16,7 @@ import { localStoragePropertiesName, headersPropertiesName } from '../../constan
 import { errorMiddleware } from './middleware'
 /* eslint-disable max-len */
 
-function connection(uri, cache) {
+function connection(uri, customHeaders) {
   const protocol = uri.split('://').shift()
   const urn = uri.split('://').pop()
   const httpLink = protocol === 'http'
@@ -28,8 +28,8 @@ function connection(uri, cache) {
     {
       connectionParams: async () => {
         return {
-          [headersPropertiesName.authorization]: await AsyncStorage.getItem(localStoragePropertiesName.authorization) || ' ',
-          [headersPropertiesName.xApiKey]: 'da2-zlk3xmy44fg4jpj73vlwlfi7sq',
+          ...headers,
+          ...(await customHeaders()),
           'content-type': 'application/json'
         }
       },
@@ -45,8 +45,7 @@ function connection(uri, cache) {
       forceFetch: true,
       headers: {
         ...headers,
-        [headersPropertiesName.authorization]: await AsyncStorage.getItem(localStoragePropertiesName.authorization) || ' ',
-        [headersPropertiesName.xApiKey]: 'da2-zlk3xmy44fg4jpj73vlwlfi7sq',
+        ...(await customHeaders()),
         'content-type': 'application/json'
       }
     }
@@ -64,15 +63,30 @@ function connection(uri, cache) {
     linkSplit
   ])
 
-  return authLink.concat(link)
+  return {
+    link: authLink.concat(link),
+    socket: wsClient
+  }
 }
 
-const clientConnection = (uri) => {
+const clientConnection = (localUri = null, cloudUri = null) => {
   const cache = new InMemoryCache()
-  // *__TODO: if only local server
-  const link = connection(uri, cache)
+  // *__ TODO: if both cloud server and local server
+  const { link: localLink } = connection(localUri, async () => ({
+    [headersPropertiesName.authorization]: await AsyncStorage.getItem(localStoragePropertiesName.authorization) || ' ',
+  }))
+
+  const { link: cloudLink } = connection(cloudUri, async () => ({
+    [headersPropertiesName.authorizationViatickBMS]: await AsyncStorage.getItem(localStoragePropertiesName.authorizationViatickBMS) || ' ',
+    [headersPropertiesName.xApiKey]: "da2-zlk3xmy44fg4jpj73vlwlfi7sq",
+  }))
+
   const client = new ApolloClient({
-    link: link,
+    link: ApolloLink.split(
+      operation => operation.getContext().connection === 'ViaTick-BMS',
+      cloudLink,
+      localLink
+    ),
     cache: cache
   })
   return client
