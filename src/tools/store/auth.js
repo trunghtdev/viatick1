@@ -68,10 +68,9 @@ class Auth {
 
   @action.bound
   login = async (token) => {
-    await AsyncStorage.setItem(localStoragePropertiesName.authorization, token)
     this.token = token
-    console.log({ token })
     this.isAuthenticated = !!token
+    await AsyncStorage.setItem(localStoragePropertiesName.authorization, token)
   }
 
   @action.bound

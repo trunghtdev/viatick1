@@ -8,7 +8,7 @@ import DeviceItem from './components/DeviceItem'
 
 const Home = memo(() => {
   return useObserver(() => {
-    const { dataSensorsWithIOT, getSensorsWithIOT } = useDeviceQuery()
+    const { dataSensorsWithIOT, getSensorsWithIOT, getModel, dataModel } = useDeviceQuery()
     const [sizeDeviceItem, setSizeDeviceItem] = useState({
       height: 500,
       width: 200
@@ -23,12 +23,14 @@ const Home = memo(() => {
     }, [sizeDeviceItem])
 
     useEffect(() => {
-      console.log({ dataSensorsWithIOT })
-    }, [dataSensorsWithIOT])
+      getModel({
+        modelId: 19
+      })
+    }, [getModel])
 
     useEffect(() => {
-      getSensorsWithIOT()
-    }, [getSensorsWithIOT])
+      console.log({ dataModel })
+    }, [dataModel])
 
     return (
       <View

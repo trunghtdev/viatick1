@@ -4,6 +4,8 @@ import Home from '../../pages/home'
 import Auth from '../../pages/authentication'
 import Login from '../../pages/authentication/login'
 import SignUp from '../../pages/authentication/signUp'
+// User
+import Profile from '../../pages/profile'
 
 export const routersNoConnection = [
 
@@ -41,6 +43,14 @@ export const routersConnection = [
     path: '/auth',
     key: 'auth',
     Component: Auth
+  },
+  {
+    hideTabBar: false,
+    hideNavBar: false,
+    initial: false,
+    path: '/profile',
+    key: 'profile',
+    Component: Profile
   }
   // {
   //   hideTabBar: false,

@@ -60,12 +60,14 @@ const App = () => {
 
   const getAndStoreGlobalConfig = async () => {
     try {
-      const server = await AsyncStorage.getItem(localStoragePropertiesName.server) || 'http://172.168.1.79:19021'
+      const server = await AsyncStorage.getItem(localStoragePropertiesName.server) || 'http://192.168.1.4:19021'
 
       const expireTokenViaTickBMSAt = await AsyncStorage.getItem(localStoragePropertiesName.expireTokenViaTickBMSAt)
       const tokenTypeViaTickBMS = await AsyncStorage.getItem(localStoragePropertiesName.tokenTypeViaTickBMS)
       const authorizationViatickBMS = await AsyncStorage.getItem(localStoragePropertiesName.authorizationViatickBMS)
       const authorization = await AsyncStorage.getItem(localStoragePropertiesName.authorization)
+
+      console.log({ authorization, authorizationViatickBMS, tokenTypeViaTickBMS, expireTokenViaTickBMSAt })
 
       const tStore = new Store()
       const auth = new Auth(tStore, authorization, authorizationViatickBMS, tokenTypeViaTickBMS, expireTokenViaTickBMSAt)
@@ -90,15 +92,15 @@ const App = () => {
           const date = moment(parseFloat(expireAtSavedLocal))
           console.log({ 'date': moment(Date.now()).format() })
           if (Date.now() >= date.valueOf()) {
-            store.auth.loginViaTickBMS()
+            await store.auth.loginViaTickBMS()
             clearInterval(interval)
             interval = setInterval(() => reLoginWhenTokenExpire(), 1000)
           }
         } else {
-          store.auth.login()
+          store.auth.loginViaTickBMS()
         }
       }
-      const interval = setInterval(() => reLoginWhenTokenExpire(), 1000)
+      let interval = setInterval(async () => await reLoginWhenTokenExpire(), 1000)
       return () => {
         if (interval) {
           clearInterval(interval)

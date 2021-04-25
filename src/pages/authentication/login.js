@@ -74,14 +74,7 @@ const Login = memo(() => {
         }
 
         if (!errorUsername && !errorPass) {
-          console.log({
-            username,
-            password,
-            errorUsername,
-            errorPass
-          })
           const { data, errors } = await login(username.toLowerCase(), password)
-          console.log({ data, errors })
           await notify({
             title: t('app.pages.login.name'),
             message: t('app.pages.login.success'),

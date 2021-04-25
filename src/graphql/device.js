@@ -1,39 +1,30 @@
 import gql from 'graphql-tag'
-export const GET_SENSORS_WITH_IOT = gql`
-  query getSensorsWithIoT(
-    $name: String,
-    $model: Int,
-    $serial: String,
-    $mac: String,
-    $region: String,
-    $longitude: Float,
-    $latitude: Float,
-    $floor: Int,
-    $distance: Float,
-    $remark: String,
-    $optional: AWSJSON,
-    $active: Boolean,
-    $date: AWSDateTim 
-  ) {
-    getSensorsWithIoT(
-      name: $name,
-      model: $model,
-      serial: $serial,
-      mac: $mac,
-      region: $region,
-      longitude: $longitude,
-      latitude: $latitude,
-      floor: $floor,
-      distance: $distance,
-      remark: $remark,
-      optional: $optional,
-      active: $active,
-      date: $date,
-    ) {
-      deviceId
-      application
+
+export const GET_MODEL = gql`
+  query getModel($modelId: Int) {
+    getModel(modelId: $modelId) {
+      modelId
       name
-      model
+      type
+      image {
+        url
+      }
+      remark
+      date
+    }
+  }
+`
+export const GET_SENSORS_WITH_IOT = gql`
+  query getSensorsWithIOT($filter: FilterDevice) {
+    getSensorsWithIOT(filter: $filter) {
+      deviceId
+      application {
+        applicationId
+      }
+      name
+      model {
+        modelId
+      }
       serial
       mac
       region

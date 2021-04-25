@@ -22,7 +22,7 @@ const Footer = (props) => {
       Actions.home()
     }, [])
     const gotoProfile = useCallback(() => {
-      // Actions.profile()
+      Actions.profile()
     }, [])
     return (
       <View
